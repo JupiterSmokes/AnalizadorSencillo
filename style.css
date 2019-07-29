@@ -16,11 +16,14 @@ ul {
     margin-top: 0%;
 }
 .primer {
-    list-style-type: disc;
+
     color: black;
 }
 #errores{
     color: darkred;
+    border-left-style: solid;
+    border-color: black;
+    margin-left: 1%;
 }
 .contenedor{
     padding: 2%;
