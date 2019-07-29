@@ -4,6 +4,7 @@ var $char; //Caracter evaluado en el momento
 var cont; //Contador
 var correcta = true; //Variable booleana para evaluar si el texto es correcto
 const END = "\n".charCodeAt(0); //Constante para el fin de linea
+const ENTER = 13; //Constante del valor de la tecla ENTER
 
 //Funcion para ingresar texto a una lista
 function ingresarLista(nombre, _word,_color) {
@@ -11,11 +12,20 @@ function ingresarLista(nombre, _word,_color) {
             $element.innerHTML = $element.innerHTML + "<li>" + _word + "</li>";
 }
 
+//Ejecutar al presionar ENTER
+
+
 /*Evaluar el primer caracter de la cadena, luego
 enviar toda la cadena para ser evaluada */
 //EL VALOR 10 ES VÁLIDO
 
-//Corregir la escritura en la lista
+$element = document.getElementById("palabra");
+$element.addEventListener("keyup", function(event) {
+    if (event.keyCode === ENTER) {
+        document.getElementById("evaluar").click();
+    }
+});
+
 function evaluar(){
     $word = document.getElementById("palabra").value + "\n";
     $char = $word.charCodeAt(0);
@@ -23,7 +33,9 @@ function evaluar(){
     var type = 0;
     console.log($word);
     console.log($char);
-     if (numeroId($char)) {
+    if ($char == END) {
+        type = 5;
+    } else if (numeroId($char)) {
        /*  if (numero($word)) {
             ingresarLista("correctas",$word);
        } else {
@@ -44,6 +56,19 @@ function evaluar(){
     }
     if (identificar($word, type)) {
         ingresarLista("correctas", $word, );
+        switch (type) {
+            case 0:
+                ingresarLista("tipo", "Identificador");
+                break;
+            case 1:
+                ingresarLista("tipo", "Numero");
+                break;
+                case 2:
+                        ingresarLista("tipo", "Simbolo")
+                        break;
+            default:
+                break;
+        }
     } else {
         ingresarLista("errores", $word);
     }
