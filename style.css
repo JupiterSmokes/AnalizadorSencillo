@@ -1,0 +1,38 @@
+body{
+    background-color: #293462;
+}
+header {
+    background-color: #216583;
+    justify-content: center;
+    display: flex;
+}
+footer{
+    background-color: #293462;
+    justify-content: center;
+    display: flex;
+}
+ul {
+    list-style-type: none;
+    margin-top: 0%;
+}
+.primer {
+    list-style-type: disc;
+    color: black;
+}
+#errores{
+    color: darkred;
+}
+.contenedor{
+    padding: 2%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: top;
+    border-top: 5px solid #00818a;
+    background-image: linear-gradient(#00818a, #f7be16);
+}
+
+
+#evaluar{
+ display: block;   
+}
