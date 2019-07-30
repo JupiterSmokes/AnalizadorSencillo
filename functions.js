@@ -1,14 +1,22 @@
-var $word; //Texto ingresado por el usuario
+var word; //Texto ingresado por el usuario
 var $element; //Elemento HTML
 var $char; //Caracter evaluado en el momento
 var cont; //Contador
 var correcta = true; //Variable booleana para evaluar si el texto es correcto
-const END = "\n".charCodeAt(0); //Constante para el fin de linea
+const END = "\n"; //Fin de linea
+const END_V = END.charCodeAt(0); //Constante para el fin de linea
 const ENTER = 13; //Constante del valor de la tecla ENTER
+const INPUTTEXT_ID = "texto"; //Id del Input Text
+//Ids de lista 
+const IDENTIFICADORES_LID = "identificadores"; 
+const NUMEROS_LID = "numeros"; 
+const SIMBOLOS_LID = "simbolos";
+const ERRORES_LID = "errores";
 
 //Funcion para ingresar texto a una lista
 function ingresarLista(nombre, _word,_color) {
     $element = document.getElementById(nombre);
+    $element.style.visibility = "visible";
             $element.innerHTML = $element.innerHTML + "<li>" + _word + "</li>";
 }
 
@@ -19,7 +27,7 @@ function ingresarLista(nombre, _word,_color) {
 enviar toda la cadena para ser evaluada */
 //EL VALOR 10 ES VÁLIDO
 
-$element = document.getElementById("palabra");
+$element = document.getElementById(INPUTTEXT_ID);
 $element.addEventListener("keyup", function(event) {
     if (event.keyCode === ENTER) {
         document.getElementById("evaluar").click();
@@ -27,26 +35,26 @@ $element.addEventListener("keyup", function(event) {
 });
 
 function evaluar(){
-    $word = document.getElementById("palabra").value + "\n";
-    $char = $word.charCodeAt(0);
+    word = document.getElementById(INPUTTEXT_ID).value + END;
+    $char = word.charCodeAt(0);
     correcta = true;
     var type = 0;
-    console.log($word);
+    console.log(word);
     console.log($char);
-    if ($char == END) {
+    if ($char == END_V) {
         type = 5;
     } else if (numeroId($char)) {
-       /*  if (numero($word)) {
-            ingresarLista("correctas",$word);
+       /*  if (numero(word)) {
+            ingresarLista("correctas",word);
        } else {
-        ingresarLista("errores",$word);
+        ingresarLista(ERRORES_LID,word);
        } */
        type = 1;
      } else if (letra($char)) {
-       /* if (identificador($word)) {
-         ingresarLista("correctas",$word);
+       /* if (identificador(word)) {
+         ingresarLista("correctas",word);
        } else {
-        ingresarLista("errores",$word);
+        ingresarLista(ERRORES_LID,word);
        } */
        type = 0;
      } else if (simbolo($char)) {
@@ -54,23 +62,23 @@ function evaluar(){
     } else {
         type = 5;
     }
-    if (identificar($word, type)) {
-        ingresarLista("correctas", $word, );
+    if (identificar(word, type)) {
+//        ingresarLista("correctas", word, );
         switch (type) {
             case 0:
-                ingresarLista("tipo", "Identificador");
+                ingresarLista(IDENTIFICADORES_LID, word);
                 break;
             case 1:
-                ingresarLista("tipo", "Numero");
+                ingresarLista(NUMEROS_LID, word);
                 break;
                 case 2:
-                        ingresarLista("tipo", "Simbolo")
+                        ingresarLista(SIMBOLOS_LID, word)
                         break;
             default:
                 break;
         }
     } else {
-        ingresarLista("errores", $word);
+        ingresarLista(ERRORES_LID, word);
     }
 }
 
@@ -88,7 +96,7 @@ function evaluar(){
         (_char>=65 && _char<=90) ||
         (_char>=48 && _char<=57)) {
         return identificador(_word);
-    } else if _(char == END){
+    } else if _(char == END_V){
         return true;
     } else {
         return false;
@@ -101,7 +109,7 @@ function evaluar(){
 //Funcion que evalua de que tipo podria ser el texto ingresado 
 function identificar(_word, type) {
     cont =0;
-    while ($char != END) {
+    while ($char != END_V) {
     $char = _word.charCodeAt(cont);
     cont++;
         switch (type) {
@@ -119,7 +127,7 @@ function identificar(_word, type) {
                 break;
         }
    }
-   clear("palabra");
+   clear(INPUTTEXT_ID);
    return correcta;
 }
 
@@ -134,7 +142,7 @@ function clear(_name) {
 /* Funcion que evalua si el valor ASCII del  caracter enviado 
     corresponde a una letra */
 function letra(_char) {
-    if ((_char>=97 && _char<=122) || (_char>=65 && _char<=90) || _char == END) {
+    if ((_char>=97 && _char<=122) || (_char>=65 && _char<=90) || _char == END_V) {
         return true;
     } else {
         return numeroId(_char);
@@ -144,7 +152,7 @@ function letra(_char) {
 /* Funcion que evalua si el valor ASCII del  caracter enviado 
     corresponde a un numero*/
 function numeroId(_char){
-    if ((_char>=48 && _char<=57) || _char == END) {
+    if ((_char>=48 && _char<=57) || _char == END_V) {
         return true;
     } else {
         return false;
@@ -158,7 +166,7 @@ function simbolo(_char) {
         (_char>=58 && _char<=64)  ||
         (_char>=91 && _char<=96)  ||
         (_char>=123 && _char<=126) ||
-        (_char>=160 && _char<=170) || _char == END) {
+        (_char>=160 && _char<=170) || _char == END_V) {
         return true;
     } else {
         return false;
