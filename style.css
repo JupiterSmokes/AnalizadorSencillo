@@ -2,7 +2,7 @@ body{
     background-color: #293462;
 }
 header {
-    background-color: #216583;
+    background-color: #4fff6cd0;
     justify-content: center;
     display: flex;
 }
@@ -22,7 +22,7 @@ ul {
 #errores{
     color: darkred;
     border-left-style: solid;
-    border-color: black;
+    border-color: rgb(83, 4, 4);
     margin-left: 1%;
 }
 .contenedor{
@@ -35,6 +35,11 @@ ul {
     background-image: linear-gradient(#00818a, #f7be16);
 }
 
+#ingreso {
+    background-image: none;
+    background-color: #00818a;
+    
+}
 
 #evaluar{
  display: block;   
