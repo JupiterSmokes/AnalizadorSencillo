@@ -14,8 +14,11 @@ footer{
 ul {
     list-style-type: none;
     margin-top: 0%;
+    visibility: hidden;
+    margin-left: 1%;
+    margin-right: 1%;
 }
-.primer {
+.Primer {
 
     color: black;
 }
@@ -23,7 +26,6 @@ ul {
     color: darkred;
     border-left-style: solid;
     border-color: rgb(83, 4, 4);
-    margin-left: 1%;
 }
 .contenedor{
     padding: 2%;
